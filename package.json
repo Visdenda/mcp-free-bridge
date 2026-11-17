@@ -1,0 +1,45 @@
+{
+  "name": "@visdenda/mcp-free-bridge",
+  "version": "0.1.0",
+  "private": false,
+  "license": "MIT",
+  "description": "Zero-dependency stdio bridge for the anonymous Visdenda free MCP server.",
+  "keywords": [
+    "mcp",
+    "model-context-protocol",
+    "stdio",
+    "bridge",
+    "visdenda",
+    "seo"
+  ],
+  "homepage": "https://visdenda.com/mcp/free",
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/visdenda/mcp-free-bridge.git"
+  },
+  "bugs": {
+    "url": "https://github.com/visdenda/mcp-free-bridge/issues"
+  },
+  "type": "module",
+  "bin": {
+    "visdenda-mcp-free": "./bin.mjs"
+  },
+  "files": [
+    "bin.mjs",
+    "README.md",
+    "LICENSE",
+    "server.json"
+  ],
+  "publishConfig": {
+    "access": "public"
+  },
+  "engines": {
+    "node": ">=18"
+  },
+  "scripts": {
+    "start": "node bin.mjs",
+    "check:package": "node publish.mjs --check",
+    "publish:npm": "node publish.mjs",
+    "prepublishOnly": "node -e \"console.error('[mcp-free-bridge] 不要就地 publish：monorepo 用 pnpm --filter @visdenda/mcp-free-bridge publish:npm，镜像仓用 npm run publish:npm（暂存目录 + 清单校验）'); process.exit(1)\""
+  }
+}

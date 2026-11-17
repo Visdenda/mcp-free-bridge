@@ -1,0 +1,35 @@
+name: Publish
+
+# npm Trusted Publishing（OIDC）：一次性前置是在 npm 网页给 @visdenda/mcp-free-bridge
+# 配置 Trusted Publisher（owner visdenda、repo mcp-free-bridge、workflow publish.yml）。
+# 发布脚本用 MCP_FREE_BRIDGE_PROVENANCE=true 打开 --provenance（只在公开仓可用）。
+"on":
+  push:
+    tags: ["v*"]
+
+permissions:
+  contents: read
+  id-token: write
+
+jobs:
+  publish:
+    runs-on: ubuntu-latest
+    timeout-minutes: 10
+    steps:
+      - uses: actions/checkout@v4
+      - uses: actions/setup-node@v4
+        with:
+          node-version: 26
+          registry-url: https://registry.npmjs.org
+      - name: Check npm CLI floor (trusted publishing needs >= 11.5.1)
+        run: |
+          npmv=$(npm --version)
+          echo "node $(node --version) / npm $npmv"
+          node -e "const [a,b]=process.argv[1].split('.').map(Number); if (a<11||(a===11&&b<5)) { console.error('npm '+process.argv[1]+' < 11.5.1: trusted publishing will fail'); process.exit(1); }" "$npmv"
+      - run: npm ci
+      - run: npm run check:package
+      - name: Smoke the bridge (closed stdin must exit cleanly)
+        run: node bin.mjs </dev/null
+      - run: npm run publish:npm
+        env:
+          MCP_FREE_BRIDGE_PROVENANCE: "true"
