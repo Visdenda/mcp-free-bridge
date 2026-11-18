@@ -32,7 +32,7 @@ const passthrough = args.filter((arg) => arg !== "--check");
 const dryRun = passthrough.includes("--dry-run");
 
 /** 公开发布仓与 Registry 身份：改这里必须同步改 mirror 脚本与 docs/operations/public-distribution.md。 */
-const PUBLIC_REPO = "visdenda/mcp-free-bridge";
+const PUBLIC_REPO = "Visdenda/mcp-free-bridge";
 const SERVER_NAME = "com.visdenda/free";
 const REMOTE_URL = "https://visdenda.com/v1/mcp/free";
 const PUBLISH_FILES = ["bin.mjs", "README.md", "LICENSE", "server.json"];

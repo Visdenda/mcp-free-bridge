@@ -3,10 +3,10 @@
   "name": "com.visdenda/free",
   "title": "Visdenda Free MCP",
   "description": "Anonymous SEO and AI-agent tools: AI crawler directory (63 crawlers), robots.txt access, llms.txt, Google update radar, MCP discovery, agent readiness and a single-page scan. No API key; calls are rate-limited per client IP.",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "websiteUrl": "https://visdenda.com/mcp/free",
   "repository": {
-    "url": "https://github.com/visdenda/mcp-free-bridge",
+    "url": "https://github.com/Visdenda/mcp-free-bridge",
     "source": "github"
   },
   "remotes": [

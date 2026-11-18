@@ -1,7 +1,7 @@
 name: Publish
 
 # npm Trusted Publishing（OIDC）：一次性前置是在 npm 网页给 @visdenda/mcp-free-bridge
-# 配置 Trusted Publisher（owner visdenda、repo mcp-free-bridge、workflow publish.yml）。
+# 配置 Trusted Publisher（owner Visdenda、repo mcp-free-bridge、workflow publish.yml）。
 # 发布脚本用 MCP_FREE_BRIDGE_PROVENANCE=true 打开 --provenance（只在公开仓可用）。
 "on":
   push:

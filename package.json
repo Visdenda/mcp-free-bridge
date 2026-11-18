@@ -1,6 +1,6 @@
 {
   "name": "@visdenda/mcp-free-bridge",
-  "version": "0.1.0",
+  "version": "0.1.1",
   "private": false,
   "license": "MIT",
   "description": "Zero-dependency stdio bridge for the anonymous Visdenda free MCP server.",
@@ -15,10 +15,10 @@
   "homepage": "https://visdenda.com/mcp/free",
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/visdenda/mcp-free-bridge.git"
+    "url": "git+https://github.com/Visdenda/mcp-free-bridge.git"
   },
   "bugs": {
-    "url": "https://github.com/visdenda/mcp-free-bridge/issues"
+    "url": "https://github.com/Visdenda/mcp-free-bridge/issues"
   },
   "type": "module",
   "bin": {
