@@ -67,6 +67,12 @@ expect(
   server.remotes?.[0]?.type === "streamable-http" && server.remotes?.[0]?.url === REMOTE_URL,
   `server.json remote must be streamable-http ${REMOTE_URL} (got ${JSON.stringify(server.remotes?.[0])})`,
 );
+// Registry 的 schema 对 description 有 100 字符硬上限，超了 `mcp-publisher validate` 直接 422；
+// 第一次提交 listing 就是这么被拒的，所以放进本地门禁，别等联网才发现。
+expect(
+  typeof server.description === "string" && server.description.length <= 100,
+  `server.json description must be <= 100 characters (got ${server.description?.length ?? "missing"})`,
+);
 
 for (const file of PUBLISH_FILES) {
   expect(existsSync(join(root, file)), `missing publish file: ${file}`);

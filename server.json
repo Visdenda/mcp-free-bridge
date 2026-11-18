@@ -2,8 +2,8 @@
   "$schema": "https://static.modelcontextprotocol.io/schemas/2025-12-11/server.schema.json",
   "name": "com.visdenda/free",
   "title": "Visdenda Free MCP",
-  "description": "Anonymous SEO and AI-agent tools: AI crawler directory (63 crawlers), robots.txt access, llms.txt, Google update radar, MCP discovery, agent readiness and a single-page scan. No API key; calls are rate-limited per client IP.",
-  "version": "0.1.1",
+  "description": "Anonymous SEO MCP: crawler directory, robots.txt, llms.txt, update radar, page scan. No API key.",
+  "version": "0.1.2",
   "websiteUrl": "https://visdenda.com/mcp/free",
   "repository": {
     "url": "https://github.com/Visdenda/mcp-free-bridge",
