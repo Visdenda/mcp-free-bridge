@@ -3,10 +3,10 @@
 Zero-dependency stdio bridge for the anonymous Visdenda MCP server. It lets MCP clients that only
 speak stdio use the hosted endpoint at `https://visdenda.com/v1/mcp/free`.
 
-Current package version: `0.3.0`. The bridge remains a transparent proxy: tool names, schemas and
+Current package version: `0.4.0`. The bridge remains a transparent proxy: tool names, schemas and
 limits are served by the endpoint.
 
-Since 0.3.0 it also mirrors modern MCP request metadata (`MCP-Protocol-Version`, `Mcp-Method`,
+Since 0.3.0 the bridge also mirrors modern MCP request metadata (`MCP-Protocol-Version`, `Mcp-Method`,
 `Mcp-Name`, base64-encoding unsafe names) derived from each JSON-RPC message, so clients speaking
 the 2026-07-28 per-request protocol work through the stdio shim.
 
