@@ -20,6 +20,39 @@ const REQUEST_HEADERS = {
   accept: "application/json, text/event-stream",
 };
 const MAX_ERROR_MESSAGE_LENGTH = 500;
+const PROTOCOL_VERSION_META_KEY = "io.modelcontextprotocol/protocolVersion";
+const BASE64_PREFIX = "=?base64?";
+const BASE64_SUFFIX = "?=";
+
+/**
+ * 2026-07-28（modern）要求把 body 中的版本/方法/名称镜像到 HTTP 头；stdio 客户端
+ * 只发 JSON-RPC，桥接层必须补。legacy 请求没有 `_meta` 版本，照旧不加头。
+ */
+const headerSafeValue = (value) => {
+  const printable = /^[\x21-\x7E](?:[\x20-\x7E\t]*[\x21-\x7E])?$/.test(value);
+  if (printable && !value.startsWith(BASE64_PREFIX)) return value;
+  return `${BASE64_PREFIX}${Buffer.from(value, "utf8").toString("base64")}${BASE64_SUFFIX}`;
+};
+
+const modernHeadersFor = (message) => {
+  const params = message.params;
+  if (typeof params !== "object" || params === null) return {};
+  const meta = params._meta;
+  if (typeof meta !== "object" || meta === null) return {};
+  const version = meta[PROTOCOL_VERSION_META_KEY];
+  if (typeof version !== "string") return {};
+
+  const headers = { "mcp-protocol-version": version };
+  if (typeof message.method === "string") headers["mcp-method"] = message.method;
+  const name = message.method === "resources/read" ? params.uri : params.name;
+  if (typeof name === "string" && name.length > 0) headers["mcp-name"] = headerSafeValue(name);
+  return headers;
+};
+
+const requestHeaders = (message) => ({
+  ...REQUEST_HEADERS,
+  ...modernHeadersFor(message),
+});
 
 const timeoutFromEnv = () => {
   const raw = Number(process.env.VISDENDA_MCP_TIMEOUT_MS);
@@ -106,7 +139,7 @@ const sendRequest = async (message, id) => {
   try {
     const response = await fetch(ENDPOINT, {
       method: "POST",
-      headers: REQUEST_HEADERS,
+      headers: requestHeaders(message),
       body: JSON.stringify(message),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
@@ -139,7 +172,7 @@ const sendNotification = async (message) => {
   try {
     const response = await fetch(ENDPOINT, {
       method: "POST",
-      headers: REQUEST_HEADERS,
+      headers: requestHeaders(message),
       body: JSON.stringify(message),
       signal: AbortSignal.timeout(TIMEOUT_MS),
     });
