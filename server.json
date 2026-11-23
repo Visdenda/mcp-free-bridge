@@ -3,7 +3,7 @@
   "name": "com.visdenda/free",
   "title": "Visdenda Free MCP",
   "description": "Anonymous SEO MCP: crawler directory, site audit, cited knowledge search. No API key.",
-  "version": "0.5.2",
+  "version": "0.6.0",
   "websiteUrl": "https://visdenda.com/mcp/free",
   "repository": {
     "url": "https://github.com/Visdenda/mcp-free-bridge",
