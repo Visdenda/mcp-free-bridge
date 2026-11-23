@@ -3,8 +3,13 @@
 Zero-dependency stdio bridge for the anonymous Visdenda MCP server. It lets MCP clients that only
 speak stdio use the hosted endpoint at `https://visdenda.com/v1/mcp/free`.
 
-Current package version: `0.6.0`. The bridge remains a transparent proxy: tool names, schemas and
+Current package version: `0.7.0`. The bridge remains a transparent proxy: tool names, schemas and
 limits are served by the endpoint.
+
+Since 0.7.0 the hosted server's default `tools/list` omits `outputSchema` (same policy as the
+account server; model-facing tool selection only needs name/title/description/inputSchema). Strict
+clients that validate structured output can send `_meta: { "dev.visdenda/outputSchemas": true }`
+and get the full definitions back.
 
 Since 0.6.0 the free server serves 10 tools, including `visdenda_get_agent_skill`: it returns the
 `ai-crawler-readiness` SKILL.md (name, version, description, auth, compatibility, canonical URL,
