@@ -1,6 +1,7 @@
 # @visdenda/mcp-free-bridge
 
 [![Visdenda Free MCP on Glama](https://glama.ai/mcp/connectors/com.visdenda/free/badges/score.svg)](https://glama.ai/mcp/connectors/com.visdenda/free)
+[![Visdenda Free MCP on Glama](https://glama.ai/mcp/servers/Visdenda/mcp-free-bridge/badges/score.svg)](https://glama.ai/mcp/servers/Visdenda/mcp-free-bridge)
 
 Zero-dependency stdio bridge for the anonymous Visdenda MCP server. It lets MCP clients that only
 speak stdio use the hosted endpoint at `https://visdenda.com/v1/mcp/free`.
